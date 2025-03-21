@@ -1,0 +1,35 @@
+<!-- templates/base.html -->
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>FAKE NEWS INSPECTOR</title>
+    </head>
+
+    <body>
+        <nav>
+            <a href="/home">Home</a>
+            <a href="">Inspect</a>
+            <a href="">About</a>
+        </nav>
+
+        <hr>
+
+        {% block content %}
+
+        <!-- other pages insert their content here -->
+
+        {% endblock %}
+    
+        <footer>
+            <p>Fake News Inspector - CS506 Project @ Boston University</p>
+            <p>© 2025 Mai Chu, Solanna Long, Chelsea Nnanyanzi & Aaron Piando</p>
+            <p>This project is for academic use only.</p>
+        </footer>
+
+    </body>
+
+</html>
