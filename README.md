@@ -29,5 +29,7 @@ As the semester progresses, we will further explore and refine this approach.
 - **Real-world Testing**: Apply the trained model to newly scraped articles.  
 
 ## 7. Team Members  
-- **Chelsea Nnanyanzi** (cnnyan@bu.edu)  
-- **Aaron Piando** (apiando@bu.edu)  
+- **Mai Chu**
+- **Solanna Long**
+- **Chelsea Nnanyanzi** 
+- **Aaron Piando**
