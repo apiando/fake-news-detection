@@ -1,133 +1,163 @@
 /* Base Colors */
 :root {
-  --primary: #22577A;       /* Dark Blue */
-  --secondary: #388E3C;     /* Dark Green */
-  --accent: #AEE9F8;        /* Light Blue */
-  --highlight: #A8E6CF;     /* Light Green */
-  --background: #E9F9EF;    /* Gentle Green Background */
+    --primary: #6B4F4F;       /* Warm Coffee Brown */
+    --secondary: #A1866F;     /* Soft Latte Beige */
+    --accent: #DDBEA9;        /* Light Almond */
+    --highlight: #F0E5CF;     /* Pale Cream Highlight */
+    --background: #FAF9F6;    /* Softest Off-White/Beige */
 }
 
 /* General Reset and Body Styling */
-  body {
+body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Tahoma;
   background-color: var(--background);
-  color: var(--secondary);
+  color: black;
 }
-    
-  header {
-    background-color: var(--primary);
-    color: white;
-    padding: 1rem 2rem;
-    text-align: center;
-    font-size: 1.8rem;
-    font-weight: bold;
-  }
-  
-  main {
-    padding: 2rem;
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(87, 74, 226, 0.1);
-  }
-  
-  textarea {
-    width: 100%;
-    height: 150px;
-    padding: 1rem;
-    font-size: 1rem;
-    border: 2px solid var(--accent);
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    resize: vertical;
-  }
-  
-  button {
-    background-color: var(--accent);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: var(--highlight);
-  }
-  
-  .result {
-    margin-top: 1.5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--secondary);
-    text-align: center;
-  }
-  
-  footer {
-    text-align: center;
-    margin-top: 3rem;
-    padding: 1rem;
-    font-size: 0.9rem;
-    color: var(--secondary);
-  }
 
-  .home-hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .hero-image {
-    width: 90%;
-    max-width: 700px;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  }
-  
-  .hero-text h2 {
-    color: var(--secondary);
-    margin: 0.5rem 0;
-  }
-  
-  nav a {
-    color: var(--accent);           
-    text-decoration: none;
-    margin: 0 1rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  nav a:hover {
-    color: var(--highlight);        
-  }
-  
-  .home-hero hr {
-    border: none;
-    height: 3px;
-    background-color: var(--primary); 
-    width: 60%;
-    margin: 2rem auto;
-    border-radius: 5px;
-    opacity: 0.7;
-  }
-  
-  .cta-button {
-    display: inline-block;
-    background-color: var(--primary);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
-    margin-top: 1.5rem;
-  }  
+header {
+  background-color: var(--primary);
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+header nav a {
+  color: var(--accent);
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  font-size: 1.5rem;
+}
+
+header nav a:hover {
+  color: var(--highlight);
+}
+
+/* Main Content */
+main {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(87, 74, 226, 0.1);
+}
+
+/* Form Styling */
+form {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  resize: vertical;
+}
+
+button {
+  background-color: var(--accent);
+  color: black;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--highlight);
+}
+
+/* Prediction Result Styling */
+.result, .prediction-result {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--secondary);
+  text-align: center;
+  background-color: var(--highlight);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* Footer Styling */
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: black;
+}
+
+/* Home Page Hero Section */
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-image {
+  width: 90%;
+  max-width: 700px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.hero-text h2 {
+  color: var(--secondary);
+  margin: 0.5rem 0;
+}
+
+nav a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--highlight);
+}
+
+.home-hero hr {
+  border: none;
+  height: 3px;
+  background-color: var(--primary);
+  width: 60%;
+  margin: 2rem auto;
+  border-radius: 5px;
+  opacity: 0.7;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: var(--primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  margin-top: 1.5rem;
+}
