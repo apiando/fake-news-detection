@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from transformers import BertTokenizer, BertForSequenceClassification
 import torch
+import pandas as pd
+import os
 
 # initialize the Flask application
 app = Flask(__name__)
@@ -23,6 +25,28 @@ def home():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+# path to load about page
+@app.route('/demo')
+def demo():
+    true_df = pd.read_csv("training/True.csv").head(3)
+    fake_df = pd.read_csv("training/Fake.csv").head(3)
+     # Check if wordclouds exist
+
+     # Generate URLs for the wordcloud images
+    true_cloud_url = 'static/true_wordcloud.png'
+    fake_cloud_url = 'static/fake_wordcloud.png'
+    
+    # Copy images from results to static (one-time operation)
+   
+    
+    return render_template('demo.html',
+                        true_df=true_df,
+                        fake_df=fake_df,
+                        true_cloud=true_cloud_url,
+                        fake_cloud=fake_cloud_url)
+
+
 
 # path to load form page 
 @app.route("/inspect", methods=["GET", "POST"])
@@ -77,6 +101,9 @@ def predict():
     prediction = label_map.get(predicted_class_id, "Unknown")
 
     return render_template('inspect.html', prediction=prediction, input_text=input_text)
+
+
+
 
 # run app on local development server
 if __name__ == '__main__':
