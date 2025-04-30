@@ -2,7 +2,6 @@
 
 {% extends "base.html" %} {% block content %}
 <style>
-  /* Fun Typography */
   h2,
   h3,
   h4 {
@@ -187,7 +186,6 @@
     box-shadow: 0 6px 12px rgba(107, 79, 79, 0.3);
   }
 
-  /* Floating Coffee Cup */
   .magnifying-glass {
     position: fixed;
     bottom: 20px;
@@ -221,8 +219,7 @@
     <p>
       This demonstration shows our machine learning model that analyzes news
       articles to detect fake content. While trained on general news, our next
-      step will be adapting it specifically for
-      <strong>healthcare misinformation detection</strong>.
+      model works especially well with politcal misinformation.
     </p>
   </div>
 
@@ -277,15 +274,6 @@
         <li>False.csv: 10,700 fake articles</li>
         <li>True.csv: 10,600 real articles</li>
       </ul>
-
-      <div class="highlight-box">
-        <h4>Future Testing</h4>
-        <p>
-          For healthcare specialization, we'll use the
-          <strong>CoAID dataset</strong> with 4,200+ COVID-19 articles and
-          fact-checks.
-        </p>
-      </div>
     </div>
 
     <div class="column">
@@ -328,7 +316,7 @@
         <img src="{{ fake_cloud }}" alt="Fake News Word Cloud" />
         <p>
           Uses emotional language like:<br />
-          "urgent", "secret", "exposed"
+          "Shocking", "Breaking", "Exposed"
         </p>
       </div>
     </div>
@@ -347,8 +335,7 @@
     <h3>What This Means</h3>
     <p>
       Our demonstration shows that machine learning can effectively identify
-      linguistic patterns in fake news. The next phase will test if these
-      patterns hold true for health misinformation specifically.
+      linguistic patterns in fake news.
     </p>
   </div>
 </div>
