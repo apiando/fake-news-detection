@@ -1,0 +1,49 @@
+<div class="csv-table">
+  <h3>{{ title }}</h3>
+  <table>
+    <thead>
+      <tr>
+        {% for column in df.columns %}
+        <th>{{ column }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for index, row in df.head(5).iterrows() %}
+      <tr>
+        {% for column in df.columns %}
+        <td>
+          {% if column == 'text' %} {{ row[column]|truncate(100) }} {% else %}
+          {{ row[column] }} {% endif %}
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .csv-table {
+    margin: 20px 0;
+    border: 1px solid #ffff;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .csv-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .csv-table th,
+  .csv-table td {
+    padding: 8px 12px;
+    border: 1px solid #6b4f4f;
+    text-align: left;
+  }
+  .csv-table th {
+    background-color: #a1866f;
+  }
+  .csv-table tr:nth-child(even) {
+    background-color: #faf4e3;
+  }
+</style>
