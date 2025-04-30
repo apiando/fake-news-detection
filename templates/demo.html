@@ -1,0 +1,355 @@
+<!-- templates/home.html -->
+
+{% extends "base.html" %} {% block content %}
+<style>
+  /* Fun Typography */
+  h2,
+  h3,
+  h4 {
+    color: var(--primary);
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+
+  h2::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  h2:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Project Section Animation */
+  .project-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(107, 79, 79, 0.1);
+    margin: 2rem auto;
+    max-width: 900px;
+    transition: all 0.3s ease;
+    border-left: 5px solid transparent;
+  }
+
+  .project-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(107, 79, 79, 0.15);
+    border-left: 5px solid var(--accent);
+  }
+
+  /* Highlight Box with Pulse Animation */
+  .highlight-box {
+    background: var(--highlight);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    position: relative;
+    overflow: hidden;
+    border-left: 5px solid var(--primary);
+  }
+
+  .highlight-box::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      transparent,
+      transparent,
+      transparent,
+      rgba(221, 190, 169, 0.1),
+      transparent
+    );
+    transform: rotate(30deg);
+    animation: shine 3s infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%) rotate(30deg);
+    }
+    100% {
+      transform: translateX(100%) rotate(30deg);
+    }
+  }
+
+  /* Word Cloud Cards */
+  .wordcloud-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(107, 79, 79, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .wordcloud-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(107, 79, 79, 0.15);
+  }
+
+  .wordcloud-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .wordcloud-card:hover img {
+    transform: rotate(1deg);
+  }
+
+  /* Fun List Items */
+  ul {
+    list-style-type: none;
+    padding-left: 1rem;
+  }
+
+  li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  li::before {
+    content: "•";
+    color: var(--accent);
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -3px;
+  }
+
+  /* Two Column Layout with Float Animation */
+  .two-column {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .column {
+    flex: 1;
+    min-width: 300px;
+    transition: all 0.3s ease;
+  }
+
+  .column:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .two-column {
+      flex-direction: column;
+    }
+
+    .project-section {
+      padding: 1.5rem;
+    }
+
+    h2::after {
+      width: 50%;
+    }
+  }
+
+  /* Fun Button */
+  .fun-button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(107, 79, 79, 0.2);
+    display: inline-block;
+    margin-top: 1rem;
+  }
+
+  .fun-button:hover {
+    background: var(--secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(107, 79, 79, 0.3);
+  }
+
+  /* Floating Coffee Cup */
+  .magnifying-glass {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 2rem;
+    animation: float 3s ease-in-out infinite;
+    cursor: pointer;
+    z-index: 100;
+    color: var(--primary);
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+</style>
+
+<!-- Add this at the bottom of your body -->
+<div class="magnifying-glass" title="Searching for the Facts!">🔎</div>
+
+<div class="project-section">
+  <h2>Project Demonstration</h2>
+
+  <div class="highlight-box">
+    <h3>What We're Building</h3>
+    <p>
+      This demonstration shows our machine learning model that analyzes news
+      articles to detect fake content. While trained on general news, our next
+      step will be adapting it specifically for
+      <strong>healthcare misinformation detection</strong>.
+    </p>
+  </div>
+
+  <div class="two-column">
+    <div class="column">
+      <h3>How It Works</h3>
+      <p>
+        We fine-tuned a BERT model to classify articles by analyzing their text.
+        The model looks for patterns in word choice and sentence structure that
+        often appear in misleading content.
+      </p>
+
+      <h4>Key Results</h4>
+      <ul>
+        <li>99.2% accuracy on our test data</li>
+        <li>Precision: 99.1% | Recall: 99.3%</li>
+        <li>F1 Score: 0.991</li>
+      </ul>
+    </div>
+
+    <div class="column">
+      <h3>Technical Details</h3>
+      <h4>Model Architecture</h4>
+      <ul>
+        <li>BertForSequenceClassification</li>
+        <li>bert-base-cased</li>
+        <li>Max sequence length: 512 tokens</li>
+      </ul>
+
+      <h4>Training Setup</h4>
+      <ul>
+        <li>3 training epochs</li>
+        <li>Batch size: 8</li>
+        <li>Learning rate: 2e-5</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Data Section -->
+<div class="project-section">
+  <h2>Our Data</h2>
+
+  <div class="two-column">
+    <div class="column">
+      <h3>Data Sources</h3>
+      <p>
+        We used the <strong>Fake News Detection Datasets</strong> by Emine
+        Bozkus:
+      </p>
+      <ul>
+        <li>False.csv: 10,700 fake articles</li>
+        <li>True.csv: 10,600 real articles</li>
+      </ul>
+
+      <div class="highlight-box">
+        <h4>Future Testing</h4>
+        <p>
+          For healthcare specialization, we'll use the
+          <strong>CoAID dataset</strong> with 4,200+ COVID-19 articles and
+          fact-checks.
+        </p>
+      </div>
+    </div>
+
+    <div class="column">
+      <h3>How We Prepared the Data</h3>
+      <ul>
+        <li>Combined and shuffled both datasets</li>
+        <li>Used only the article text for training</li>
+        <li>80/20 train-test split</li>
+        <li>
+          BERT tokenizer handled:
+          <ul>
+            <li>Lowercasing</li>
+            <li>Word splitting</li>
+            <li>Padding/truncation</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Findings Section -->
+<div class="project-section">
+  <h2>What We Discovered</h2>
+
+  <h3>Word Patterns Tell the Story</h3>
+  <div class="wordcloud-display">
+    <div class="wordcloud-pair">
+      <div class="wordcloud-card">
+        <h4>Real News</h4>
+        <img src="{{ true_cloud }}" alt="Real News Word Cloud" />
+        <p>
+          Features formal language about:<br />
+          "government", "policy", "report"
+        </p>
+      </div>
+
+      <div class="wordcloud-card">
+        <h4>Fake News</h4>
+        <img src="{{ fake_cloud }}" alt="Fake News Word Cloud" />
+        <p>
+          Uses emotional language like:<br />
+          "urgent", "secret", "exposed"
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Example Articles</h3>
+  <p>Here's sample data that helped train our model:</p>
+
+  <div class="dashboard">
+    {% set title = 'Real News Samples' %} {% set df = true_df %} {% include
+    'csv.html' %} {% set title = 'Fake News Samples' %} {% set df = fake_df %}
+    {% include 'csv.html' %}
+  </div>
+
+  <div class="highlight-box">
+    <h3>What This Means</h3>
+    <p>
+      Our demonstration shows that machine learning can effectively identify
+      linguistic patterns in fake news. The next phase will test if these
+      patterns hold true for health misinformation specifically.
+    </p>
+  </div>
+</div>
+{% endblock %}
