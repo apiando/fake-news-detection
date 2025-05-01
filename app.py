@@ -34,8 +34,8 @@ def demo():
      # Check if wordclouds exist
 
      # Generate URLs for the wordcloud images
-    true_cloud_url = 'static/true_wordcloud.png'
-    fake_cloud_url = 'static/fake_wordcloud.png'
+    true_cloud_url = 'static/images/true_word_cloud.png'
+    fake_cloud_url = 'static/images/fake_word_cloud.png'
     
     # Copy images from results to static (one-time operation)
    
