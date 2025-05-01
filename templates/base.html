@@ -2,35 +2,42 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fake News Inspector</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
 
-<body>
+  <body>
     <header>
-        <a href="/home"><img src="static/images/logo_white.png" alt="Fake News Inspector Logo" style="max-height: 100px"></a>        
-        <nav>
-            <a href="/home">Home</a>
-            <a href="/inspect">Inspect</a>
-            <a href="/about">About</a>
-        </nav>
+      <a href="/home"
+        ><img
+          src="static/images/logo_white.png"
+          alt="Fake News Inspector Logo"
+          style="max-height: 100px"
+      /></a>
+      <nav>
+        <a href="/home">Home</a>
+        <a href="/inspect" role="link" aria-label="Inspect">Inspect</a>
+        <a href="/about">About</a>
+        <a href="/demo" role="link" aria-label="Demo">Demo</a>
+      </nav>
     </header>
 
     <main>
-        {% block content %}
-        <!-- other pages insert their content here -->
-        {% endblock %}
+      {% block content %}
+      <!-- other pages insert their content here -->
+      {% endblock %}
     </main>
 
     <footer>
-        <p>Fake News Inspector - CS506 Project @ Boston University</p>
-        <p>© 2025 Mai Chu, Solanna Long, Chelsea Nnanyanzi & Aaron Piando</p>
-        <p>This project is for academic use only.</p>
+      <p>Fake News Inspector - CS506 Project @ Boston University</p>
+      <p>© 2025 Mai Chu, Solanna Long, Chelsea Nnanyanzi & Aaron Piando</p>
+      <p>This project is for academic use only.</p>
     </footer>
-</body>
-
+  </body>
 </html>
