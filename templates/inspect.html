@@ -1,24 +1,29 @@
 <!-- templates/inspect.html -->
 
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
+<div class="home-hero">
+  <div class="hero-text">
+    <h2>Test a News Article</h2>
+  </div>
+</div>
 
-{% block content %}
-    <div class="home-hero">
-        <div class="hero-text">
-            <h2>Test a News Article</h2>
-        </div>    
-    </div>
+<form action="/inspect" method="POST">
+  <label for="text">Enter the article text</label><br />
+  <textarea
+    id="text"
+    name="text"
+    rows="8"
+    cols="60"
+    placeholder="Paste article text here..."
+    required
+  ></textarea
+  ><br /><br />
+  <button type="submit" aria-label="submit">Inspect</button>
+</form>
 
-    <form action="/inspect" method="POST">
-        <label for="text">Enter the article text</label><br>
-        <textarea id="text" name="text" rows="8" cols="60" placeholder="Paste article text here..." required></textarea><br><br>
-        <button type="submit">Inspect</button>
-    </form>
-
-    {% if prediction %}
-        <div class="result">
-            <h3>Prediction:</h3>
-            <p>{{ prediction }}</p>
-        </div>
-    {% endif %}
-{% endblock %}
+{% if prediction %}
+<div class="result">
+  <h3>Prediction:</h3>
+  <p>{{ prediction }}</p>
+</div>
+{% endif %} {% endblock %}

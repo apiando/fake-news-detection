@@ -24,7 +24,14 @@
     transform-origin: left;
     transition: transform 0.3s ease;
   }
-
+  
+  .data_link a {
+    color:  #6B4F4F;
+  }
+  .data_link a:hover,
+  .data_link a:focus {
+    color: #A1866F;
+  }
   h2:hover::after {
     transform: scaleX(1);
   }
@@ -41,13 +48,8 @@
     border-left: 5px solid transparent;
   }
 
-  .project-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(107, 79, 79, 0.15);
-    border-left: 5px solid var(--accent);
-  }
 
-  /* Highlight Box with Pulse Animation */
+ 
   .highlight-box {
     background: var(--highlight);
     padding: 1.5rem;
@@ -86,7 +88,7 @@
     }
   }
 
-  /* Word Cloud Cards */
+  
   .wordcloud-card {
     background: white;
     padding: 1.5rem;
@@ -96,23 +98,18 @@
     text-align: center;
   }
 
-  .wordcloud-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 16px rgba(107, 79, 79, 0.15);
-  }
+  
 
   .wordcloud-card img {
     width: 100%;
     height: auto;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    
   }
 
-  .wordcloud-card:hover img {
-    transform: rotate(1deg);
-  }
+  
 
-  /* Fun List Items */
+  
   ul {
     list-style-type: none;
     padding-left: 1rem;
@@ -133,7 +130,7 @@
     top: -3px;
   }
 
-  /* Two Column Layout with Float Animation */
+
   .two-column {
     display: flex;
     flex-wrap: wrap;
@@ -150,7 +147,7 @@
     transform: translateY(-3px);
   }
 
-  /* Responsive Adjustments */
+  
   @media (max-width: 768px) {
     .two-column {
       flex-direction: column;
@@ -165,37 +162,10 @@
     }
   }
 
-  /* Fun Button */
-  .fun-button {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 0.8rem 1.8rem;
-    font-size: 1rem;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(107, 79, 79, 0.2);
-    display: inline-block;
-    margin-top: 1rem;
-  }
 
-  .fun-button:hover {
-    background: var(--secondary);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(107, 79, 79, 0.3);
-  }
 
-  .magnifying-glass {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 2rem;
-    animation: float 3s ease-in-out infinite;
-    cursor: pointer;
-    z-index: 100;
-    color: var(--primary);
-  }
+  
+
 
   @keyframes float {
     0%,
@@ -208,8 +178,8 @@
   }
 </style>
 
-<!-- Add this at the bottom of your body -->
-<div class="magnifying-glass" title="Searching for the Facts!">🔎</div>
+
+
 
 <div class="project-section">
   <h2>Project Demonstration</h2>
@@ -220,6 +190,8 @@
       This demonstration shows our machine learning model that analyzes news
       articles to detect fake content. While trained on general news, our next
       model works especially well with politcal misinformation.
+      articles to detect the verity of the news. While trained on general news, our model
+      works especially well with politcal data.
     </p>
   </div>
 
@@ -227,16 +199,18 @@
     <div class="column">
       <h3>How It Works</h3>
       <p>
-        We fine-tuned a BERT model to classify articles by analyzing their text.
-        The model looks for patterns in word choice and sentence structure that
-        often appear in misleading content.
+        We fine-tuned a pretrained BERT model, specifically a RoBERTa model,
+        from hugging face to classify articles by analyzing their text. The
+        model looks for patterns in word choice, casing, and sentence structure
+        that often appear in misleading content.
       </p>
 
       <h4>Key Results</h4>
-      <ul>
-        <li>99.2% accuracy on our test data</li>
-        <li>Precision: 99.1% | Recall: 99.3%</li>
-        <li>F1 Score: 0.991</li>
+      <ul>Majority Class Baseline:
+
+        <li>54.5% accuracy on our test data</li>
+        <li>Precision: 47.54% | Recall: 59.68%</li>
+        <li>F1 Score: 52.56%</li>
       </ul>
     </div>
 
@@ -244,8 +218,8 @@
       <h3>Technical Details</h3>
       <h4>Model Architecture</h4>
       <ul>
-        <li>BertForSequenceClassification</li>
-        <li>bert-base-cased</li>
+        <li>RoBERTaForSequenceClassification</li>
+        <li>RoBETa-base-cased</li>
         <li>Max sequence length: 512 tokens</li>
       </ul>
 
@@ -269,6 +243,9 @@
       <p>
         We used the <strong>Fake News Detection Datasets</strong> by Emine
         Bozkus:
+        <div class="data_link">
+          <a href="https://drive.google.com/drive/folders/1k4ULGkOo0VexF6C6u_Dt808bPjFRfLoR?usp=drive_link"
+            >Datasets</a> </div>
       </p>
       <ul>
         <li>False.csv: 10,700 fake articles</li>
@@ -285,7 +262,7 @@
         <li>
           BERT tokenizer handled:
           <ul>
-            <li>Lowercasing</li>
+            <li>Casing</li>
             <li>Word splitting</li>
             <li>Padding/truncation</li>
           </ul>
@@ -317,6 +294,7 @@
         <p>
           Uses emotional language like:<br />
           "Shocking", "Breaking", "Exposed"
+          "Shocking", "Breaking", "Exposed"
         </p>
       </div>
     </div>
@@ -336,7 +314,11 @@
     <p>
       Our demonstration shows that machine learning can effectively identify
       linguistic patterns in fake news.
+      linguistic patterns in real or fake news. While promising, this approach
+      relies heavily on the quality and diversity of training data and must be 
+      used at your discretion.
     </p>
   </div>
 </div>
+
 {% endblock %}
