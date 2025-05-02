@@ -1,14 +1,13 @@
-## VIDEO PRESENTATION & DEMONSTRATION
-https://youtu.be/dXQtiDt8KdM
-
 ## FAKE NEWS DETECTION
+
+Video:https://youtu.be/dXQtiDt8KdM
 
 This project fine-tunes a pre-trained RoBERTa model to classify fake vs. true news articles using Hugging Face's `transformers` library and PyTorch. The dataset used is derived from `Fake.csv` and `True.csv`.
 
 ## ROBERTA
 RoBERTa was created because authors believed that BERT is hugely under-trained. There was not enough data to train BERT, 10 times more training was applied (16GB vs. 160GB). Model is bigger with 15% more parameters. Next sentence prediction is removed from BERT because the authors claimed there is no use. 4 times more masking task to learn by dynamic masking pattern.
 
-In this project, we used HuggingFace's Trainer API tokens. To leverage the full functionality of the Hugging Face ecosystem (including downloading pre-trained models like roberta-base and optionally pushing fine-tuned models to the Hugging Face Hub), we authenticated using a Hugging Face access token. After logging in, the token allows us to:
+In my project, I used HuggingFace's Trainer API tokens. To leverage the full functionality of the Hugging Face ecosystem (including downloading pre-trained models like roberta-base and optionally pushing fine-tuned models to the Hugging Face Hub), I authenticated using a Hugging Face access token. After logging in, the token allows us to:
 1. Pull pre-trained transformer models via from_pretrained()
 2. Push our trained models and checkpoints to the Hugging Face Hub (if push_to_hub=True in TrainingArguments)
 3. Use tokenizers directly from the Hugging Face Transformers library
@@ -17,7 +16,7 @@ In this project, we used HuggingFace's Trainer API tokens. To leverage the full 
 
 ![ChatGPT Image May 1, 2025, 05_34_54 AM](https://github.com/user-attachments/assets/6ece604d-4bb0-4c52-aaf0-6e25faf01b03)
 
-Large Language Models (LLMs), built upon the Transformer architecture, are powerful AI systems trained on extensive text data to understand and generate human-like language, code, and more! Fine-tuning BERT for classification involves appending a task-specific layer to the pre-trained model and training it on labeled data. This process enables BERT to tailor its deep contextual understanding to the target task. In this notebook, we introduce the concept of LLMs with a focus on BERT and demonstrate how to fine-tune it for the task of fake news detection. We recieved the feedback from our TA Ge Yao in CS 506 and we have decided to switch to RoBERTa instead of the conventional BERT model. This will account for all the capitalization found regurlary in Fake News.
+Large Language Models (LLMs), built upon the Transformer architecture, are powerful AI systems trained on extensive text data to understand and generate human-like language, code, and more! Fine-tuning BERT for classification involves appending a task-specific layer to the pre-trained model and training it on labeled data. This process enables BERT to tailor its deep contextual understanding to the target task. In this notebook, we introduce the concept of LLMs with a focus on BERT and demonstrate how to fine-tune it for the task of fake news detection. I recieved the feedback from our TA Ge Yao in CS 506 and we have decided to switch to RoBERTa instead of the conventional BERT model. This will account for all the capitalization found regurlary in Fake News.
 
 ## Dataset
 The dataset consists of two files:
@@ -51,23 +50,13 @@ We have done BERT uncased in the past to test our data, however, the results are
 
 ## EVALUATION METRICS
 Accuracy, Precision, Recall, F1 Score
-**METRICS**
+**🔎 Evaluation Metrics**
 {'eval_loss': 0.692, 'eval_accuracy': 0.523, 'eval_precision': 0.0, 'eval_recall': 0.0, 'eval_f1': 0.0}
-Eval Loss ≈ 0.69
-Close to log(2) ≈ 0.693, suggesting the model is making mostly random (uninformed) predictions.
-
-Eval Accuracy ≈ 52%
-Slightly above random guessing (50% in a balanced binary classification), likely due to label imbalance.
-
-Eval Precision, Recall, F1 = 0.0
-Indicates the model is not predicting the positive class (real news) — it is defaulting to predicting only the negative class (fake news).
-
-Train Loss = 0.7037
-The model was trained for only about 15% of one full epoch, which is insufficient for meaningful learning. This explains the random-like evaluation performance.
-
-Train Runtime ≈ 40 minutes (CPU)
-The model completed 1000 steps but not a full epoch, further contributing to the underwhelming metrics.
-
+eval_loss ≈ 0.69 → Close to log(2) ≈ 0.693, which suggests the model is making random (uninformed) predictions.
+eval_accuracy ≈ 52% → Slightly above random guessing (50% in a balanced binary classification), likely due to label imbalance.
+eval_precision, recall, f1 = 0.0 → The model isn't predicting the positive class (1) — it's predicting class 0.
+'train_loss': 0.7037 → This is due to the model being only trained for 0.15 epochs, which is not enough for meaningful learning — ~15% of one full pass through the training set will not ensure RoBERTa is not trained. Follow my instructions below to run for a better result.
+'train_runtime': total ~40 minutes (CPU). Completed 1000 steps, but not a full epoch, which explains why metrics look underwhelming. Again, look at the recommendations below for a comprehensive recommendation.
 **CONCLUSION**
 Although this result reflects only 15% of the first epoch, the model shows early signs of learning, with losses near the expected binary baseline (train: 0.7037, eval: 0.6923) and an evaluation accuracy of 52.3%, which is slightly above random. The stable runtime and consistent throughput confirm a reliable training pipeline, providing a solid foundation for future improvements through longer training, class balancing, or tuning.
 
@@ -79,9 +68,9 @@ To simplify and streamline the training loop, we use Hugging Face's Trainer API.
 - Optimizing model weights
 - Periodically evaluating performance
 
-We are using the method of Full Fine-Tuning this PreTrained Model. 
+I am using the method of Full Fine-Tuning this PreTrained Model. 
 1. Add any additional layers on top while updating the entire whole model on labeled data. 
-We loaded the roberta-base model using: model = AutoModelForSequenceClassification.from_pretrained("roberta-base", num_labels=2)
+I loaded the roberta-base model using: model = AutoModelForSequenceClassification.from_pretrained("roberta-base", num_labels=2)
 No layers were freezed, there were embeddings, encoders, and classification head that are all trainable BY DEFAULT. All TrainingArguments and Trainer are used without any layer freezing.
 2. All aspect of the model will be updated. 
 This is usually the slowest but has the highest performance.
@@ -108,7 +97,7 @@ To improve this, we had to make these changes in the training args:
 - Increasing the batch size (if GPU memory allows)
 - Enabling mixed precision training (fp16) to speed up computation
 - Using smaller data subsets during prototyping stages
-We can also freeze dataset if possible. **Training the model** for **longer** like the example we have given above would significantly improve our results, especially if we are evaluating under a random baseline and a majority class baseline. Without changing the model and reducing the size and magnitude during the training process to test, the majority baseline would be set to the majority class, which in this case index=0 or False News. 
+I can also freeze dataset if possible. **Training the model** for **longer** like the example I have given above would significantly improve our results, especially if we are evaluating under a random baseline and a majority class baseline. Without changing the model and reducing the size and magnitude during the training process to test, the majority baseline would be set to the majority class, which in this case index=0 or False News. 
 
 <img width="747" alt="Screen Shot 2025-05-01 at 8 10 39 AM" src="https://github.com/user-attachments/assets/ca12a18b-1052-4a93-ab45-a3deb77f1d83" />
 
